@@ -1,42 +1,44 @@
-# sv
+# Monstera Shop — Frontend
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+SvelteKit application. Renders server-side, calls the Go API for all data.
 
-## Creating a project
+## Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **SvelteKit** — full-stack framework (SSR)
+- **TypeScript** — all server-side files typed
+- **Tailwind CSS** — styling
+- **Zod** — form validation
+- **Tiptap** — rich text editor (blog)
+- **Paraglide** — i18n
 
-```sh
-# create a new project
-npx sv create my-app
+## Setup
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
 ```
 
-To recreate this project with the same configuration:
+Requires the Go API running at `http://localhost:8080` (see `server/`).
 
-```sh
-# recreate this project
-npx sv@0.14.1 create --template minimal --types ts --install npm monstera-shop
+## Environment
+
+```
+# app/.env
+PUBLIC_API_URL=http://localhost:8080
 ```
 
-## Developing
+## Scripts
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+| Command           | Description                     |
+|-------------------|---------------------------------|
+| `npm run dev`     | Development server (port 5173)  |
+| `npm run build`   | Production build                |
+| `npm run preview` | Preview production build        |
+| `npm run check`   | Type-check with svelte-check    |
 
-```sh
-npm run dev
+## Key Conventions
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- All API calls go through `src/lib/api.ts`
+- Prices are stored as integer cents; use `formatPrice()` from `src/lib/utils/format.ts`
+- Auth is handled via an httpOnly cookie set by the Go API; `hooks.server.ts` calls `GET /api/auth/me` to hydrate `locals.user`
+- Load functions transform snake_case API responses to camelCase before passing to components

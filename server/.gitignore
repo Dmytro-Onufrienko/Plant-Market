@@ -1,0 +1,16 @@
+.env
+/static/uploads/*
+!/static/uploads/plants/.gitkeep
+!/static/uploads/.gitkeep
+
+# Build output
+/bin/
+*.exe
+
+# IDE
+.idea/
+.vscode/
+.claude/
+
+
+CLAUDE.md

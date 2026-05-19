@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+@theme {
+  /* Green — 60% */
+  --color-green-950: #0f2110;
+  --color-green-900: #1c3d1c;
+  --color-green-800: #234d22;
+  --color-green-700: #2c5c29;
+  --color-green-600: #357032;
+  --color-green-500: #3d823a;
+  --color-green-400: #5da05a;
+  --color-green-300: #7bb878;
+  --color-green-200: #aed5ac;
+  --color-green-100: #dff0df;
+  --color-green-50:  #f0f9f0;
+
+  /* Brown — 30% */
+  --color-bark-950: #1a0d05;
+  --color-bark-900: #2e1708;
+  --color-bark-800: #42210f;
+  --color-bark-700: #6b421f;
+  --color-bark-600: #8a5628;
+  --color-bark-500: #9c6130;
+  --color-bark-400: #b87e4e;
+  --color-bark-300: #c79e78;
+  --color-bark-200: #dfc2a5;
+  --color-bark-100: #f0e0d0;
+  --color-bark-50:  #faf4ee;
+
+  /* Neutral / White — 10% */
+  --color-stone-950: #1a1a17;
+  --color-stone-700: #4a4a46;
+  --color-stone-500: #737370;
+  --color-stone-400: #9a9a96;
+  --color-stone-300: #c0c0bc;
+  --color-stone-200: #e0e0dc;
+  --color-stone-100: #f0f0ec;
+  --color-stone-50:  #fafaf7;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  /* Radius */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 9999px;
+}
+
+/* ─── Base Styles ───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-stone-50);
+  color: var(--color-stone-950);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+/* ─── Utilities ─────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 640px)  { .container { padding-inline: 2rem; } }
+@media (min-width: 1024px) { .container { padding-inline: 4rem; } }
+
+/* ─── Focus ring ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-green-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-green-300); border-radius: 3px; }
+
+/* ─── Monstera leaf float animation ─────────────────────── */
+@keyframes leafFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes leafSway {
+  0%, 100% { transform: rotate(-3deg) scale(1); }
+  50%       { transform: rotate(3deg) scale(1.02); }
+}
+.leaf-float { animation: leafFloat 6s ease-in-out infinite; }
+.leaf-sway  { animation: leafSway  8s ease-in-out infinite; }
+
+/* ─── Subtle dot grid background ────────────────────────── */
+.bg-dot-grid {
+  background-image: radial-gradient(circle, var(--color-green-200) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
